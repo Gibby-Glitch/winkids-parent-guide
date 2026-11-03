@@ -92,6 +92,15 @@ details.why summary::before { content: "+ "; }
 details.why[open] summary::before { content: "– "; }
 details.why p { margin-top: 6px; background: var(--chalk); color: var(--chalk-ink); border-radius: 10px; padding: 10px 12px; font-size: 15.5px; }
 
+.print-card { display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; gap: 14px; align-items: center; text-decoration: none; color: var(--ink); background: var(--surface); border: 2px solid var(--mat); border-radius: 14px; padding: 14px 16px; }
+.print-card:hover { background: var(--mat-soft); }
+.print-card:focus-visible { outline: 3px solid var(--mat); outline-offset: 2px; }
+.print-card .ic { width: 46px; height: 46px; border-radius: 50%; background: var(--mat-soft); color: var(--mat); display: grid; place-items: center; }
+.print-card .ic svg { width: 26px; height: 26px; }
+.print-card b { display: block; font-size: 17px; }
+.print-card .sub { font-size: 14.5px; color: var(--muted); line-height: 1.4; }
+.print-card .go { font-weight: 700; color: var(--mat); font-size: 15px; white-space: nowrap; }
+@media (max-width: 480px) { .print-card { grid-template-columns: 46px minmax(0, 1fr); } .print-card .go { display: none; } }
 .callout { border-left: 4px solid var(--mat); padding: 4px 0 4px 14px; display: flex; flex-direction: column; gap: 6px; }
 .callout h3 { font-size: 19px; }
 
