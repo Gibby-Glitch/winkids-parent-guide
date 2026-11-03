@@ -24,6 +24,16 @@ let currentEvent = "bars";
 
 rail.innerHTML = TABS.map(t => `<button class="tab" role="tab" id="tab-${t.id}" data-id="${t.id}" aria-selected="false">${t.dot ? `<span class="dot" style="background:${t.dot}"></span>` : ""}${t.label}</button>`).join("");
 rail.addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) go(b.dataset.id); });
+const railPrev = document.getElementById("railPrev"), railNext = document.getElementById("railNext");
+function updateArrows() {
+  railPrev.hidden = rail.scrollLeft <= 4;
+  railNext.hidden = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
+}
+railPrev.addEventListener("click", () => rail.scrollBy({ left: -rail.clientWidth * 0.7, behavior: "smooth" }));
+railNext.addEventListener("click", () => rail.scrollBy({ left: rail.clientWidth * 0.7, behavior: "smooth" }));
+rail.addEventListener("scroll", updateArrows, { passive: true });
+window.addEventListener("resize", updateArrows);
+if (document.fonts) document.fonts.ready.then(updateArrows);
 
 function go(id) { if (location.hash !== "#" + id) location.hash = id; else render(); }
 
@@ -175,7 +185,8 @@ function render() {
   if (!TABS.some(t => t.id === id)) id = "start";
   rail.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-selected", b.dataset.id === id));
   const tabEl = document.getElementById("tab-" + id);
-  if (tabEl) tabEl.scrollIntoView({ inline: "center", block: "nearest" });
+  if (tabEl) rail.scrollTo({ left: tabEl.offsetLeft - (rail.clientWidth - tabEl.offsetWidth) / 2 });
+  updateArrows();
   let html;
   if (CLASSES[id]) html = classPanel(id);
   else if (id === "preschool") html = preschoolPanel();
