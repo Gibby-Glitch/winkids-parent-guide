@@ -60,6 +60,11 @@ function classPanel(id) {
     <ol class="skills" id="skills"></ol>
     <p class="muted" style="font-size:14.5px">Skills are listed in the order she'll learn them, 1 to 3. Tap "Why it matters" to see what each one leads to.</p>
   </div>
+  <a class="print-card" href="charts/WinKids-${id}-star-chart.pdf" target="_blank" rel="noopener">
+    <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z"/></svg></span>
+    <span><b>Print a sticker chart</b><span class="sub">Track these skills at home. Add a star sticker as she reaches each step.</span></span>
+    <span class="go" aria-hidden="true">Open PDF</span>
+  </a>
   <div class="card">
     <h3>${next ? `Moving up to ${CLASSES[next].name}` : "What comes after Spirals"}</h3>
     <p>${next
@@ -126,6 +131,7 @@ function startPanel() {
       <li><b>Ask what she worked on.</b> Try: "What was your favorite thing on bars today?" Use the class page to know the words.</li>
       <li><b>Praise the effort.</b> "You kept trying that handstand!" helps more than asking when she'll get it.</li>
       <li><b>Trust the slow parts.</b> A plateau usually means she's getting stronger before the next skill clicks.</li>
+      <li><b>Put a sticker chart on the fridge.</b> Each class tab has one to print. Celebrating small steps keeps kids excited.</li>
       <li><b>Talk to her coach.</b> Coaches decide when she's ready to move up, and they're happy to tell you what's next.</li>
     </ul>
   </div>`;
