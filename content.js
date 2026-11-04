@@ -2,6 +2,48 @@
 // Edit the text in this file to change what parents see. Keep the quotes and commas as they are.
 // Each skill is: ["Name", "What it looks like", "Why it matters"]
 
+// ===== Registration & camps =====================================================
+// REGISTER_URL powers every red "Register" button. Leave it "" to hide them.
+const REGISTER_URL = "https://portal.iclasspro.com/winkids/booking";
+
+// Camp prices and times, shown on the Camps tab.
+const CAMP_INFO = {
+  half: "$40", halfTimes: "9am–Noon or 12:15–3:15pm",
+  full: "$70", fullTimes: "9am–3pm",
+  little: "Ages 2.5–5 · 9am–Noon",
+  big: "Ages 5–12 · half or full day",
+  includes: "Gymnastics, games, crafts, friends and more!"
+};
+
+// CAMP_WEEKS: each day hides itself once its date has passed, and a week hides when all its days are past.
+// Regular day:  { date: "YYYY-MM-DD", little: "Theme for ages 2.5–5", big: "Theme for ages 5–12" }
+// Special day:  { date: "YYYY-MM-DD", special: "Event name", detail: "Time · price" }
+const CAMP_WEEKS = [
+  { name: "Thanksgiving Week Camps", days: [
+    { date: "2026-11-23", little: "Little Pilgrims' Pie Party", big: "Gobble Games" },
+    { date: "2026-11-24", little: "Gobble & Gigglers", big: "Gobble Games" },
+    { date: "2026-11-25", little: "Tiny Turkey Takeover", big: "The Great Turkey Escape" },
+    { date: "2026-11-27", special: "Family Open Gym", detail: "10am–1pm · $10/hr per kid" }
+  ]},
+  { name: "Christmas Week Camps", days: [
+    { date: "2026-12-18", special: "Free Family Event: Santa Gym & Swim", detail: "1pm–3pm · Free" },
+    { date: "2026-12-21", little: "North Pole Playdate", big: "North Pole Ninjas" },
+    { date: "2026-12-22", little: "Reindeer Games", big: "Reindeer Games" },
+    { date: "2026-12-23", little: "Whoville Adventure", big: "Whoville Adventure" },
+    { date: "2026-12-28", little: "Gingerbread Games", big: "Gingerbread Games" },
+    { date: "2026-12-29", little: "Polar Pals", big: "Arctic Adventure" },
+    { date: "2026-12-30", little: "New Year's Party", big: "Glow into the New Year" }
+  ]},
+  { name: "Spring Break Camps", days: [
+    { date: "2027-03-15", little: "Springtime Safari", big: "Spring Break Survivor" },
+    { date: "2027-03-16", little: "Bullfrogs & Butterflies", big: "Western Days" },
+    { date: "2027-03-17", little: "Down on the Farm", big: "Game Show Showdown" },
+    { date: "2027-03-18", little: "Dino Adventure", big: "Neon Party" },
+    { date: "2027-03-19", little: "Mermaid Adventures", big: "WK Island Party" }
+  ]}
+];
+// ================================================================================
+
 const EVENT_INFO = {
   bars: "Bars build grip, arm and core strength. Most of the work is learning to swing and to hold their own body weight.",
   beam: "Beam builds balance and focus. Every skill is learned on the floor or a low beam first, then moves higher.",
