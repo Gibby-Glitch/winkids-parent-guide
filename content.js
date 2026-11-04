@@ -7,9 +7,9 @@ const EVENT_INFO = {
   beam: "Beam builds balance and focus. Every skill is learned on the floor or a low beam first, then moves higher.",
   floor: "Floor is where rolls, handstands and cartwheels live. These shapes show up on every other event too.",
   vault: "Vault is about running fast, bouncing off the springboard, and landing safely. Soft mats stand in for the vault table at first.",
-  rod: "Rod floor is a long, springy tumbling strip. It's bouncier than regular floor, so athletes get a little extra help learning rolls, cartwheels and round offs.",
-  dmt: "The double mini is a small trampoline with two parts. Athletes run, bounce onto the first part, do a skill off the second, and land on a mat. Early on, most of the work is the approach and safe landings.",
-  tramp: "On the big trampoline, control comes first: bouncing in the middle, stopping on purpose, and landing safely in different positions long before anything flips."
+  rod: "Tumbling happens on the floor and on rod floor, a long, springy strip that gives a little extra bounce. Athletes build from rolls and handstands to round offs and back handsprings.",
+  dmt: "The double mini is a small trampoline with two parts. Athletes run, bounce onto it, do a skill, and land on a mat. Early on, most of the work is a steady approach and safe landings.",
+  tramp: "On the big trampoline, control comes first: clean jump shapes, landing in different positions, then flips."
 };
 
 const CLASSES = {
@@ -134,84 +134,84 @@ const CLASSES = {
         ["Cartwheel hop over with mat", "Puts both hands on a soft mat and hops the feet over to the other side.", "The first step toward a cartwheel: weight on the hands while the legs travel over."],
         ["Donkey kicks (handstand drill)", "Hands on the floor, kicks both feet up behind like a donkey.", "Builds arm strength and comfort being upside down. It's the start of a handstand."]
       ],
-      dmt: [
-        ["3 straight jumps", "Three tall, straight bounces in a row.", "A straight jump in the same spot is the base of every trampoline skill."],
-        ["Safe landing stick", "Lands on the mat with bent knees and doesn't move the feet.", "Knowing how to land safely is the first thing we teach on any trampoline."],
-        ["Running and skipping", "Learning to run and skip with good form.", "The run is what powers the double mini later on."]
-      ],
       tramp: [
         ["Straight jumps", "Bounces straight up and down in the middle of the trampoline.", "Staying in the middle and in control keeps athletes safe as the bounces get higher."],
         ["Seat drop with learning mat", "Bounces down to sitting with legs straight out, on a soft mat.", "The first drop skill. The learning mat cushions it while athletes learn the shape."],
         ["Table bounce to stand with learning mat", "Bounces onto hands and knees, then back up to standing, using a soft mat.", "Teaches changing position while bouncing and coming back to the feet safely."]
+      ],
+      dmt: [
+        ["3 straight jumps", "Three tall, straight bounces in a row.", "A straight jump in the same spot is the base of every trampoline skill."],
+        ["Safe landing stick", "Lands on the mat with bent knees and doesn't move the feet.", "Knowing how to land safely is the first thing we teach on any trampoline."],
+        ["Running and skipping", "Learning to run and skip with good form.", "The run is what powers the double mini later on."]
       ]
     }
   },
   "tnt-1": {
     program: "tnt", name: "TNT 1", color: "var(--tnt-1)", badge: "Trampoline & Tumbling · Coed",
     facts: ["Level 1", "Coed"],
-    summary: "The first grade-school TNT level. Athletes learn jumping shapes, the run and hurdle onto the double mini, and their first linked drops on the trampoline.",
-    focus: "Big goal for this class: control before height. Athletes learn to bounce in one spot and land safely before anything gets bigger.",
+    summary: "Strong basics and growing confidence. Athletes learn handstands, rolls and cartwheels, clean jump shapes on trampoline, and their first linked jumps on the double mini.",
+    focus: "Big goal for this class: master the basics. Everything in Level 2 builds on these.",
     skills: {
       rod: [
-        ["3/4 cartwheel", "A cartwheel shape with legs not yet all the way overhead.", "A real cartwheel needs strong arms and straight legs. This step builds both."],
-        ["3/4 handstand", "Kicks the legs up most of the way, not straight up yet.", "Builds arm strength and comfort being upside down before a full handstand."],
-        ["Forward roll on floor", "A forward roll with no wedge to help.", "Now the athlete makes all the momentum."]
-      ],
-      dmt: [
-        ["Tuck and straddle jumps", "Jumps with knees pulled in (tuck) or legs out wide (straddle).", "Making shapes in the air builds control and core strength."],
-        ["Run to hurdle punch mount", "Runs, does a skip-step (hurdle), and bounces onto the double mini with both feet.", "This is how every double mini pass starts. A good hurdle gives a safe, straight bounce."],
-        ["Safe landings", "Comes off the double mini and lands on the mat with bent knees, feet still.", "Most of the safety on the double mini happens at the landing."]
+        ["Handstand", "Kicks up onto the hands, then comes back down with control.", "Builds balance and arm strength. Handstands are part of almost every tumbling skill."],
+        ["Cartwheel (at least 3/4)", "Goes sideways from feet to hands and most of the way back to the feet.", "Gets athletes comfortable being upside down while moving."],
+        ["Forward and backward rolls", "Rolls forward and backward in a tight ball.", "Teaches body control and how to roll safely."]
       ],
       tramp: [
-        ["Tuck and straddle jumps", "The same jump shapes, now on the big trampoline.", "Holding a shape while bouncing higher takes more control."],
-        ["Seat drop to table drop with learning mat", "Goes from a seat drop to a hands-and-knees drop, using a soft mat.", "Linking two drops teaches timing and body control."],
-        ["Seat drop to 1/2 turn stand up", "From a seat drop, bounces up and turns halfway around to land standing.", "The first turning skill. Turning while bouncing takes body awareness."]
+        ["Jump shapes with kick-outs", "Straight, tuck (knees in), straddle (legs wide) and pike (legs out front) jumps. A kick-out means opening back to straight before landing.", "Clean shapes and straight landings keep athletes safe as jumps get higher."],
+        ["Seat drop", "Bounces down to sitting with legs straight out, then back up to the feet.", "The first landing that isn't on the feet. It teaches control between positions."],
+        ["Full turn", "Spins all the way around in the air and lands facing the same way.", "Builds turning awareness and steady landings."]
+      ],
+      dmt: [
+        ["3 straight jumps across", "Three straight jumps in a row that travel across and off the double mini.", "Builds rhythm and confidence landing on the mat."],
+        ["Straight, tuck, tuck", "One straight jump, then two tuck jumps, in a row.", "Teaches linking different jumps together."],
+        ["Straight, straddle, straddle", "One straight jump, then two straddle jumps.", "More practice linking shapes with steady timing."]
       ]
     }
   },
   "tnt-2": {
     program: "tnt", name: "TNT 2", color: "var(--tnt-2)", badge: "Trampoline & Tumbling · Coed",
     facts: ["Level 2", "Coed"],
-    summary: "Athletes build on level 1: full cartwheels, handstands against the wall, jumps in a row on the double mini, and three trampoline skills linked together.",
-    focus: "Big goal for this class: linking skills. Doing several jumps or drops in a row, with control, is a big step up.",
+    summary: "Athletes connect their basics and start getting ready for front flips, back handsprings and running tumbling.",
+    focus: "Big goal for this class: link skills together and prepare to flip.",
     skills: {
       rod: [
-        ["Kick up to handstand on wall with mat", "Kicks up to a handstand against the wall, with a mat for support.", "Builds the strength and courage to go upside down on their own."],
-        ["Cartwheel on floor", "A full cartwheel with legs going over the top.", "A cornerstone skill. The round off comes from the cartwheel."],
-        ["Back roll off mat", "A backward roll down a raised mat.", "The first backward skill. The slope helps while athletes learn to push with their hands."]
-      ],
-      dmt: [
-        ["3 tuck jumps", "Three tuck jumps in a row on the double mini.", "Linking jumps builds rhythm and control."],
-        ["3 straddle jumps", "Three straddle jumps in a row.", "Wide, controlled shapes in the air without losing the bounce."],
-        ["Jump to dive roll down elevated incline", "Bounces off the double mini into a forward roll down a raised wedge mat.", "Teaches reaching forward and rolling out safely after flight."]
+        ["Handstand to forward roll", "Holds a handstand, then tucks the chin and rolls out.", "Teaches control coming down from a handstand."],
+        ["Cartwheel, then round off", "A full cartwheel, then learning the round off: a cartwheel that lands with both feet together.", "The round off starts most running tumbling."],
+        ["Bridge kickover and back handspring drills", "Kicks over from a bridge (a backbend on hands and feet), plus drills for the back handspring.", "Builds the flexibility and strength to tumble backward."]
       ],
       tramp: [
-        ["10 straight jumps to control stop", "Ten bounces in a row, then stops on command by bending the knees.", "Stopping on purpose is one of the most important safety skills on trampoline."],
-        ["Seat drop to stand up without learning mat", "A seat drop and back to standing, no soft mat this time.", "The same skill as level 1, now without the cushion."],
-        ["Seat drop to table drop to forward roll", "Links a seat drop, a hands-and-knees drop and a forward roll.", "Three skills in a row: timing, control and comfort rolling on a bouncy surface."]
+        ["Linked jump shapes", "Straight, tuck, straddle and pike jumps in a row, with clean shapes.", "Builds rhythm and control over several bounces."],
+        ["Swivel hips and back drops", "Swivel hips: seat drop, half turn, seat drop. Back drop: lands flat on the back and bounces up.", "Builds turning control and comfort landing in new positions."],
+        ["Seat drop, doggy, roll or front flip", "Seat drop, then hands and knees (\"doggy\"), then a forward roll or front flip.", "Gets athletes used to spinning forward, the first step toward flips."]
+      ],
+      dmt: [
+        ["Steady approach and landing", "Bounces on with both feet, keeps a steady rhythm, and lands balanced.", "A steady approach makes every double mini skill safer."],
+        ["Linked jump shapes", "Tuck, straddle and pike jumps in a row, with controlled landings.", "Builds the timing needed for harder skills."],
+        ["Front flip drills", "Practices the takeoff, tuck shape and forward spin with the coach.", "Prepares athletes to do front flips safely."]
       ]
     }
   },
   "tnt-3": {
     program: "tnt", name: "TNT 3", color: "var(--tnt-3)", badge: "Trampoline & Tumbling · Coed",
     facts: ["Level 3", "Coed"],
-    summary: "Our most advanced level here. Round offs on rod floor, back and stomach drops on trampoline, and the first coach-spotted flips.",
-    focus: "Big goal for this class: getting ready to flip. A coach spots every flipping skill at this stage, and strong basics keep flips safe.",
+    summary: "Athletes work on landing front flips, building the back handspring, and putting together running tumbling.",
+    focus: "Big goal for this class: confidence. New skills often start with a coach's help, and the help comes away a little at a time.",
     skills: {
       rod: [
-        ["Run or power hurdle to round off", "Runs, skip-steps into a round off: like a cartwheel, but landing with feet together.", "The round off starts most tumbling passes and leads to back handsprings."],
-        ["Independent kick up to handstand", "Kicks up to a handstand with no wall or help.", "Balancing a handstand alone takes real strength and control."],
-        ["Back roll on floor", "A backward roll on flat floor.", "No slope to help now. Athletes have to push through their hands."]
-      ],
-      dmt: [
-        ["Introduce spotted flipping skills", "First flips on the double mini, with a coach helping by hand.", "A coach spots every flip at this stage so athletes learn the right shape safely."],
-        ["Jump back to bottom, back roll down incline", "Bounces backward and goes into a back roll down a wedge mat.", "Gets athletes comfortable moving backward after a bounce, a step toward back flips."],
-        ["Run to hurdle punch tuck jump mount", "Runs, hurdles onto the double mini and does a tuck jump.", "Adds a shape to the mount, building power and control."]
+        ["Handstand hop", "Small hops on the hands while holding a handstand.", "Builds shoulder strength and control, which the back handspring needs."],
+        ["Running tumbling", "A run or skip-step (hurdle) into a round off, then a small bounce up (rebound).", "Builds speed and rhythm for tumbling passes."],
+        ["Back handspring", "Jumps backward onto the hands and flips over to the feet. The coach helps less over time.", "A big milestone and the base for advanced tumbling."]
       ],
       tramp: [
-        ["Back drops", "Lands flat on the back, then bounces back up to standing.", "A safe, flat landing on the back is a building block for flips."],
-        ["Stomach drops", "Lands flat on the stomach, arms in front, then bounces back up.", "Builds body control in a flat position."],
-        ["Introduce spotted flipping skills", "First flips on the trampoline, with a coach spotting.", "Flips come only after the drops are solid, and always with a coach at first."]
+        ["Linked basics and turns", "Jump shapes, full turns and swivel hips, all in one sequence.", "Shows control over many skills in a row."],
+        ["Stomach and back drops", "Lands flat on the stomach or back, then bounces back to the feet.", "Builds body awareness and safe landing positions."],
+        ["Front tuck to feet", "A front flip in a tight ball (tuck), landing on the feet.", "The first full flip on trampoline."]
+      ],
+      dmt: [
+        ["Mount and build height", "Bounces on with both feet and jumps higher while keeping a steady rhythm.", "Height gives time to do bigger skills safely."],
+        ["Jump combos with a strong finish", "Links tuck, straddle and pike jumps and finishes with a balanced landing.", "Builds timing and precision."],
+        ["Front tuck dismount", "A front flip off the end of the double mini, landing on the feet.", "Puts together travel, flipping and landing."]
       ]
     }
   }
@@ -246,16 +246,26 @@ const GLOSSARY = [
   ["TNT", "Short for Trampoline & Tumbling, our coed program on rod floor, double mini and trampoline."],
   ["Rod floor", "A long, springy tumbling strip. It's bouncier than regular floor and helps athletes learn tumbling skills."],
   ["Double mini", "A small trampoline with two parts. Athletes run, bounce on the first part, and do a skill off the second onto a mat."],
-  ["Mount", "On the double mini, the first bounce onto the trampoline after the run."],
+  ["Mount", "On the double mini, the first bounce onto the trampoline after the run, with both feet."],
   ["Learning mat", "A soft mat placed on the trampoline to cushion new drops while athletes learn them."],
   ["Drop", "Landing on the trampoline somewhere other than the feet, like sitting or on the back, then bouncing back up."],
   ["Seat drop", "Bouncing down to sitting with legs straight out, then back up."],
   ["Table drop", "Landing on hands and knees in a tabletop shape, then bouncing back up."],
   ["Back drop", "Landing flat on the back on the trampoline, then bouncing back up."],
   ["Stomach drop", "Landing flat on the stomach, arms in front, then bouncing back up."],
-  ["Control stop", "Stopping a bounce on purpose by bending the knees. A key trampoline safety skill."],
   ["Spotted", "A coach is hands-on, helping the athlete through the skill. Every new flip starts spotted."],
   ["Donkey kick", "Hands on the floor, kicking both feet up behind. A first step toward a handstand."],
+  ["Tuck", "A shape with the knees pulled up to the chest, like a ball."],
+  ["Straddle", "A shape with the legs straight and spread wide apart."],
+  ["Pike", "A shape with the legs straight and together, out in front, folded at the hips."],
+  ["Kick-out", "Opening from a tuck, straddle or pike back to a straight body before landing."],
+  ["Swivel hips", "On trampoline: a seat drop, a half turn in the air, then another seat drop."],
+  ["Doggy", "Landing on hands and knees on the trampoline, then bouncing up."],
+  ["Bridge", "A backbend with hands and feet on the floor and the tummy pushed up."],
+  ["Kickover", "Kicking the legs over from a bridge to land on the feet."],
+  ["Back handspring", "Jumping backward onto the hands and flipping over to the feet. Often called a BHS."],
+  ["Front tuck", "A front flip done in a tuck shape."],
+  ["Dismount", "The last skill that takes an athlete off the equipment."],
   ["Dive roll", "A forward roll that starts with a small jump forward, hands reaching first."]
 ];
 
