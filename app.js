@@ -7,12 +7,12 @@ const ICON = {
   dmt: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22h12l12-6"/><path d="M5 22v5M14 22v5M25 17v10"/><circle cx="22" cy="6" r="2.4" fill="currentColor" stroke="none"/><path d="M22 9v4"/></svg>',
   tramp: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c4 3 22 3 26 0"/><path d="M6 22l-1 6M26 22l1 6M16 24v4"/><circle cx="16" cy="6" r="2.4" fill="currentColor" stroke="none"/><path d="M16 9v6M12 12l4-2 4 2"/></svg>'
 };
-const EVENT_LABEL = { bars: "Bars", beam: "Beam", floor: "Floor", vault: "Vault", rod: "Rod Floor", dmt: "Double Mini", tramp: "Trampoline" };
+const EVENT_LABEL = { bars: "Bars", beam: "Beam", floor: "Floor", vault: "Vault", rod: "Tumbling", dmt: "Double Mini", tramp: "Trampoline" };
 
 const PROGRAMS = {
   gym: { label: "Gymnastics", events: ["bars", "beam", "floor", "vault"], order: ["gym-girls", "cartwheels", "dynamos", "spirals"],
          tabs: ["start", "preschool", "gym-girls", "cartwheels", "dynamos", "spirals", "more", "words"] },
-  tnt: { label: "Trampoline & Tumbling", events: ["rod", "dmt", "tramp"], order: ["firecrackers", "tnt-1", "tnt-2", "tnt-3"],
+  tnt: { label: "Trampoline & Tumbling", events: ["rod", "tramp", "dmt"], order: ["firecrackers", "tnt-1", "tnt-2", "tnt-3"],
          tabs: ["start", "firecrackers", "tnt-1", "tnt-2", "tnt-3", "words"] }
 };
 const LEO = { pink: "var(--leo-pink)", blue: "var(--leo-blue)", red: "var(--leo-red)", black: "var(--leo-black)" };
@@ -169,9 +169,9 @@ function startPanel() {
   <div style="display:flex;flex-direction:column;gap:10px">
     <span class="eyebrow">Trampoline &amp; Tumbling events</span>
     <div class="grid3">
-      <div class="card">${ICON.rod}<h3>Rod Floor</h3><p>A springy strip for tumbling.</p></div>
+      <div class="card">${ICON.rod}<h3>Tumbling</h3><p>Rolls and handstands up to back handsprings.</p></div>
+      <div class="card">${ICON.tramp}<h3>Trampoline</h3><p>Jump shapes, drops, then flips.</p></div>
       <div class="card">${ICON.dmt}<h3>Double Mini</h3><p>Run, bounce, skill, land.</p></div>
-      <div class="card">${ICON.tramp}<h3>Trampoline</h3><p>Control, drops, then flips.</p></div>
     </div>
   </div>
 
@@ -227,7 +227,7 @@ function wordsPanel() {
   return `
   <div><h2 style="font-size:30px;font-weight:800">Gym words</h2><p class="muted" style="margin-top:4px">The words you'll hear coaches use, in plain English.</p></div>
   <label for="q" class="eyebrow">Search</label>
-  <input id="q" class="search" type="search" placeholder="Try &quot;round off&quot; or &quot;seat drop&quot;" autocomplete="off">
+  <input id="q" class="search" type="search" placeholder="Try &quot;round off&quot; or &quot;pike&quot;" autocomplete="off">
   <dl class="gloss" id="gloss"></dl>`;
 }
 function renderGloss(q = "") {
