@@ -11,9 +11,9 @@ const EVENT_LABEL = { bars: "Bars", beam: "Beam", floor: "Floor", vault: "Vault"
 
 const PROGRAMS = {
   gym: { label: "Gymnastics", events: ["bars", "beam", "floor", "vault"], order: ["gym-girls", "cartwheels", "dynamos", "spirals"],
-         tabs: ["start", "preschool", "gym-girls", "cartwheels", "dynamos", "spirals", "more", "words"] },
+         tabs: ["start", "preschool", "gym-girls", "cartwheels", "dynamos", "spirals", "more", "camps", "words"] },
   tnt: { label: "Trampoline & Tumbling", events: ["rod", "tramp", "dmt"], order: ["firecrackers", "tnt-1", "tnt-2", "tnt-3"],
-         tabs: ["start", "firecrackers", "tnt-1", "tnt-2", "tnt-3", "words"] }
+         tabs: ["start", "firecrackers", "tnt-1", "tnt-2", "tnt-3", "camps", "words"] }
 };
 const LEO = { pink: "var(--leo-pink)", blue: "var(--leo-blue)", red: "var(--leo-red)", black: "var(--leo-black)" };
 const progOf = id => (CLASSES[id] && CLASSES[id].program) || (id === "preschool" || id === "more" ? "gym" : null);
@@ -21,7 +21,7 @@ const colorOf = c => c.color || LEO[c.leo];
 const badgeOf = c => c.badge || c.leoName;
 const factsOf = c => c.facts || [c.age, c.len, c.level].filter(Boolean);
 
-const TAB_LABEL = { start: "Start here", preschool: "Preschool", more: "Galaxy & Homeschool", words: "Gym words" };
+const TAB_LABEL = { start: "Start here", camps: "Camps", preschool: "Preschool", more: "Galaxy & Homeschool", words: "Gym words" };
 const tabLabel = id => TAB_LABEL[id] || CLASSES[id].name;
 const tabDot = id => CLASSES[id] ? colorOf(CLASSES[id]) : (id === "preschool" ? "var(--leo-none)" : null);
 const ALL_TABS = [...new Set([...PROGRAMS.gym.tabs, ...PROGRAMS.tnt.tabs])];
@@ -54,7 +54,7 @@ progBar.addEventListener("click", e => {
   const b = e.target.closest(".prog"); if (!b) return;
   const p = b.dataset.prog; const cur = location.hash.slice(1);
   setProgram(p);
-  if (cur === "start" || cur === "words" || !cur) render(); else go(PROGRAMS[p].order[0]);
+  if (cur === "start" || cur === "words" || cur === "camps" || !cur) render(); else go(PROGRAMS[p].order[0]);
 });
 
 rail.addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) go(b.dataset.id); });
@@ -127,8 +127,59 @@ function renderSkills(id) {
 
 const classLinks = order => order.map(id => `<button class="step" data-go="${id}" style="padding:4px 0"><span class="dot" style="background:${colorOf(CLASSES[id])}"></span>${CLASSES[id].leoName ? CLASSES[id].leoName + " · " : ""}${CLASSES[id].name}</button>`).join("");
 
+const pad2 = n => String(n).padStart(2, "0");
+const todayISO = () => { const d = new Date(); return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`; };
+const isoDate = iso => { const [y, m, d] = iso.split("-").map(Number); return new Date(y, m - 1, d); };
+const fmtDay = iso => isoDate(iso).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+const fmtShort = iso => isoDate(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+const regLink = (label = "Register", cls = "reg-btn") => REGISTER_URL ? `<a class="${cls}" href="${esc(REGISTER_URL)}" target="_blank" rel="noopener">${label}</a>` : "";
+function liveWeeks() {
+  if (typeof CAMP_WEEKS === "undefined") return [];
+  const t = todayISO();
+  return CAMP_WEEKS.map(w => ({ ...w, days: (w.days || []).filter(d => d.date >= t) })).filter(w => w.days.length);
+}
+const weekRange = w => { const a = w.days[0].date, b = w.days[w.days.length - 1].date; return a === b ? fmtShort(a) : `${fmtShort(a)} – ${fmtShort(b)}`; };
+
+function campsHTML() {
+  const weeks = liveWeeks();
+  if (!weeks.length) return "";
+  const w = weeks[0];
+  return `<div class="card camps">
+    <span class="eyebrow">Coming up at Win Kids</span>
+    <h3>${esc(w.name)}</h3>
+    <p class="muted" style="font-size:15.5px">${weekRange(w)} · Themed camps for ages 2.5–12. Half day ${CAMP_INFO.half} · Full day ${CAMP_INFO.full}.</p>
+    <div class="camp-actions">${regLink()}<button class="ghost-btn" data-go="camps">See all camp dates</button></div>
+  </div>`;
+}
+
+function campsPanel() {
+  const weeks = liveWeeks();
+  const I = CAMP_INFO;
+  const dayHTML = d => d.special
+    ? `<li class="day special"><span class="date">${fmtDay(d.date)}</span><div><b>${esc(d.special)}</b><span class="meta">${esc(d.detail || "")}</span></div></li>`
+    : `<li class="day"><span class="date">${fmtDay(d.date)}</span><div class="themes">
+        <div><span class="age">Ages 2.5–5</span><b>${esc(d.little)}</b></div>
+        <div><span class="age">Ages 5–12</span><b>${esc(d.big)}</b></div></div></li>`;
+  return `
+  <div><span class="eyebrow">Holiday &amp; break camps</span><h2 style="font-size:30px;font-weight:800">Camps</h2></div>
+  <p class="lede">Themed camp days when school's out. ${esc(I.includes)}</p>
+  <div class="prices">
+    <div><span class="eyebrow">Half day</span><b>${I.half}</b><span>${esc(I.halfTimes)}</span></div>
+    <div><span class="eyebrow">Full day</span><b>${I.full}</b><span>${esc(I.fullTimes)}</span></div>
+  </div>
+  <p class="muted" style="font-size:15px">Ages 2.5–5 attend 9am–Noon. Ages 5–12 can pick a morning, afternoon or full day.</p>
+  ${regLink("Register for camp")}
+  ${weeks.length ? weeks.map(w => `
+    <section class="camp-week">
+      <h3>${esc(w.name)} <span class="muted" style="font-weight:400;font-size:16px">${weekRange(w)}</span></h3>
+      <ul class="days">${w.days.map(dayHTML).join("")}</ul>
+    </section>`).join("") : `<div class="card"><p>No camps are scheduled right now. Check back soon, or call us at 972-355-9988.</p></div>`}
+  ${weeks.length ? regLink("Register for camp") : ""}`;
+}
+
 function startPanel() {
   return `
+  ${campsHTML()}
   <h2 style="font-size:30px;font-weight:800">Welcome to Win Kids</h2>
   <p class="lede">Most parents didn't grow up doing gymnastics or trampoline, so the names and the pace can be a mystery. This guide shows what your athlete is working on in class, in plain words, and why it matters.</p>
   <div class="card">
@@ -252,6 +303,7 @@ function render() {
   else if (id === "preschool") html = preschoolPanel();
   else if (id === "more") html = morePanel();
   else if (id === "words") html = wordsPanel();
+  else if (id === "camps") html = campsPanel();
   else html = startPanel();
   view.innerHTML = `<section class="panel" role="tabpanel" aria-labelledby="tab-${id}">${html}</section>`;
   if (CLASSES[id]) renderSkills(id);
@@ -265,5 +317,7 @@ view.addEventListener("click", e => {
   if (g) { go(g.dataset.go); window.scrollTo({ top: 0 }); }
 });
 window.addEventListener("hashchange", () => { render(); window.scrollTo({ top: 0 }); });
+const regBtn = document.getElementById("regBtn");
+if (typeof REGISTER_URL === "string" && REGISTER_URL) { regBtn.href = REGISTER_URL; regBtn.hidden = false; }
 buildRail();
 render();
