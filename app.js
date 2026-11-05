@@ -42,7 +42,7 @@ function buildRail() {
     const d = tabDot(id);
     return `<button class="tab" role="tab" id="tab-${id}" data-id="${id}" aria-selected="false">${d ? `<span class="dot" style="background:${d}"></span>` : ""}${tabLabel(id)}</button>`;
   }).join("");
-  progBar.querySelectorAll(".prog").forEach(b => b.setAttribute("aria-pressed", b.dataset.prog === program));
+  if (progBar) progBar.querySelectorAll(".prog").forEach(b => b.setAttribute("aria-pressed", b.dataset.prog === program));
 }
 function setProgram(p) {
   if (program === p) return;
@@ -50,7 +50,7 @@ function setProgram(p) {
   try { localStorage.setItem("wk-program", p); } catch (e) {}
   buildRail();
 }
-progBar.addEventListener("click", e => {
+if (progBar) progBar.addEventListener("click", e => {
   const b = e.target.closest(".prog"); if (!b) return;
   const p = b.dataset.prog; const cur = location.hash.slice(1);
   setProgram(p);
@@ -60,11 +60,12 @@ progBar.addEventListener("click", e => {
 rail.addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) go(b.dataset.id); });
 const railPrev = document.getElementById("railPrev"), railNext = document.getElementById("railNext");
 function updateArrows() {
+  if (!railPrev || !railNext) return;
   railPrev.hidden = rail.scrollLeft <= 4;
   railNext.hidden = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
 }
-railPrev.addEventListener("click", () => rail.scrollBy({ left: -rail.clientWidth * 0.7, behavior: "smooth" }));
-railNext.addEventListener("click", () => rail.scrollBy({ left: rail.clientWidth * 0.7, behavior: "smooth" }));
+if (railPrev) railPrev.addEventListener("click", () => rail.scrollBy({ left: -rail.clientWidth * 0.7, behavior: "smooth" }));
+if (railNext) railNext.addEventListener("click", () => rail.scrollBy({ left: rail.clientWidth * 0.7, behavior: "smooth" }));
 rail.addEventListener("scroll", updateArrows, { passive: true });
 window.addEventListener("resize", updateArrows);
 if (document.fonts) document.fonts.ready.then(updateArrows);
@@ -132,9 +133,9 @@ const todayISO = () => { const d = new Date(); return `${d.getFullYear()}-${pad2
 const isoDate = iso => { const [y, m, d] = iso.split("-").map(Number); return new Date(y, m - 1, d); };
 const fmtDay = iso => isoDate(iso).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
 const fmtShort = iso => isoDate(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
-const regLink = (label = "Register", cls = "reg-btn") => REGISTER_URL ? `<a class="${cls}" href="${esc(REGISTER_URL)}" target="_blank" rel="noopener">${label}</a>` : "";
+const regLink = (label = "Register", cls = "reg-btn") => (typeof REGISTER_URL === "string" && REGISTER_URL) ? `<a class="${cls}" href="${esc(REGISTER_URL)}" target="_blank" rel="noopener">${label}</a>` : "";
 function liveWeeks() {
-  if (typeof CAMP_WEEKS === "undefined") return [];
+  if (typeof CAMP_WEEKS === "undefined" || typeof CAMP_INFO === "undefined") return [];
   const t = todayISO();
   return CAMP_WEEKS.map(w => ({ ...w, days: (w.days || []).filter(d => d.date >= t) })).filter(w => w.days.length);
 }
@@ -317,7 +318,8 @@ view.addEventListener("click", e => {
   if (g) { go(g.dataset.go); window.scrollTo({ top: 0 }); }
 });
 window.addEventListener("hashchange", () => { render(); window.scrollTo({ top: 0 }); });
-const regBtn = document.getElementById("regBtn");
-if (typeof REGISTER_URL === "string" && REGISTER_URL) { regBtn.href = REGISTER_URL; regBtn.hidden = false; }
+// Draw the page first, so a missing optional piece can never leave it blank.
 buildRail();
 render();
+const regBtn = document.getElementById("regBtn");
+if (regBtn && typeof REGISTER_URL === "string" && REGISTER_URL) { regBtn.href = REGISTER_URL; regBtn.hidden = false; }
